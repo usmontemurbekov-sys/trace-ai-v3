@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: trace-v3-beta
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python download_model.py
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: ALLOWED_ORIGINS
+        value: https://trace-ai-detector.usmontemurbekov72.workers.dev
